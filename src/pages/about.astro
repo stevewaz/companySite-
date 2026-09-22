@@ -1,0 +1,189 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const values = [
+  {
+    title: "Craft over speed for its own sake",
+    description:
+      "We'd rather ship something excellent a week later than something mediocre today.",
+  },
+  {
+    title: "Default to transparency",
+    description:
+      "Open roadmaps, honest postmortems, and pricing you can find without talking to sales.",
+  },
+  {
+    title: "Customers are the roadmap",
+    description:
+      "The best features we've shipped started as a support ticket or a customer call.",
+  },
+];
+
+const stats = [
+  { value: "12k+", label: "teams building on Acme" },
+  { value: "48", label: "countries with active customers" },
+  { value: "99.99%", label: "platform uptime, last 12 months" },
+  { value: "2019", label: "founded" },
+];
+
+const team = [
+  { name: "Priya Nathan", role: "Co-founder & CEO", initials: "PN" },
+  { name: "Marcus Webb", role: "Co-founder & CTO", initials: "MW" },
+  { name: "Sofia Reyes", role: "Head of Design", initials: "SR" },
+  { name: "Daniel Okoye", role: "Head of Engineering", initials: "DO" },
+];
+---
+
+<Layout
+  title="About"
+  description="Meet the team building Acme App Co. and learn why we started the company."
+>
+  <section class="section hero-sm">
+    <div class="wrap hero-sm__inner">
+      <span class="eyebrow">About us</span>
+      <h1>We're building the platform we wished we had.</h1>
+      <p>
+        Acme App Co. started in 2019 after our founders spent a decade gluing
+        together infrastructure instead of building products. We're fixing
+        that, one team at a time.
+      </p>
+    </div>
+  </section>
+
+  <section class="section--tight stats">
+    <div class="wrap grid grid--3 stats__grid">
+      {
+        stats.map((stat) => (
+          <div class="stat">
+            <div class="stat__value">{stat.value}</div>
+            <div class="stat__label">{stat.label}</div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section values">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">What we believe</span>
+        <h2>The values behind every decision</h2>
+      </div>
+      <div class="grid grid--3">
+        {
+          values.map((value) => (
+            <div class="card">
+              <h3>{value.title}</h3>
+              <p>{value.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section team">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">Leadership</span>
+        <h2>The people behind Acme</h2>
+      </div>
+      <div class="grid grid--3">
+        {
+          team.map((person) => (
+            <div class="card team__card">
+              <div class="team__avatar" aria-hidden="true">
+                {person.initials}
+              </div>
+              <h3>{person.name}</h3>
+              <p>{person.role}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta">
+    <div class="wrap cta__inner card">
+      <h2>We're hiring across the company</h2>
+      <p>Come build the future of app development with us.</p>
+      <a href="/contact" class="btn btn--primary">View open roles</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-sm__inner {
+    max-width: 680px;
+  }
+
+  .hero-sm h1 {
+    font-size: clamp(2.1rem, 4vw, 2.8rem);
+  }
+
+  .stats__grid {
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+  }
+
+  .stat__value {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .stat__label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+  }
+
+  .section__head {
+    text-align: center;
+    max-width: 520px;
+    margin: 0 auto 40px;
+  }
+
+  .team__card {
+    text-align: center;
+  }
+
+  .team__card p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+  }
+
+  .team__avatar {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 16px;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    background: rgba(124, 92, 255, 0.15);
+    color: var(--text);
+  }
+
+  .cta__inner {
+    text-align: center;
+    padding: 56px;
+  }
+
+  .cta__inner .btn {
+    margin-top: 8px;
+  }
+
+  @media (max-width: 860px) {
+    .stats__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+  }
+</style>

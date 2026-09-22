@@ -1,0 +1,151 @@
+---
+const year = new Date().getFullYear();
+
+const columns = [
+  {
+    title: "Product",
+    links: [
+      { href: "/features", label: "Features" },
+      { href: "/pricing", label: "Pricing" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { href: "/about", label: "About" },
+      { href: "/contact", label: "Contact" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { href: "/", label: "Privacy" },
+      { href: "/", label: "Terms" },
+    ],
+  },
+];
+---
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div class="footer__brand">
+      <a href="/" class="footer__logo">
+        <span class="footer__mark" aria-hidden="true"></span>
+        Acme App Co.
+      </a>
+      <p>Ship better apps, faster. Built for teams who care about craft.</p>
+    </div>
+
+    <div class="footer__columns">
+      {
+        columns.map((col) => (
+          <div class="footer__col">
+            <h4>{col.title}</h4>
+            <ul>
+              {col.links.map((link) => (
+                <li>
+                  <a href={link.href}>{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="wrap footer__bottom">
+    <p>&copy; {year} Acme App Co. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    margin-top: 88px;
+    padding-top: 64px;
+  }
+
+  .footer__inner {
+    display: grid;
+    grid-template-columns: 1.4fr 2fr;
+    gap: 32px;
+    padding-bottom: 40px;
+  }
+
+  .footer__columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .footer__logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .footer__mark {
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  }
+
+  .footer__brand p {
+    max-width: 32ch;
+    font-size: 0.92rem;
+  }
+
+  .footer__col h4 {
+    font-size: 0.85rem;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+
+  .footer__col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer__col a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    transition: color 0.15s ease;
+  }
+
+  .footer__col a:hover {
+    color: var(--text);
+  }
+
+  .footer__bottom {
+    border-top: 1px solid var(--border);
+    padding: 24px 0;
+  }
+
+  .footer__bottom p {
+    margin: 0;
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 780px) {
+    .footer__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .footer__columns {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

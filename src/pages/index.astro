@@ -1,0 +1,220 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FeatureCard from "../components/FeatureCard.astro";
+
+const features = [
+  {
+    icon: "⚡",
+    title: "Ship in days, not months",
+    description:
+      "A batteries-included toolkit for building and deploying production apps without the boilerplate.",
+  },
+  {
+    icon: "🔒",
+    title: "Secure by default",
+    description:
+      "SOC 2 Type II, SSO, and audit logs built in from day one — not bolted on later.",
+  },
+  {
+    icon: "📈",
+    title: "Scales with you",
+    description:
+      "From your first ten users to your first ten million, the same architecture holds up.",
+  },
+  {
+    icon: "🧩",
+    title: "Plays well with others",
+    description:
+      "Native integrations with the tools your team already uses, plus a full REST and webhook API.",
+  },
+  {
+    icon: "🤝",
+    title: "Real human support",
+    description:
+      "Talk to an engineer, not a bot. Average first response time under 15 minutes.",
+  },
+  {
+    icon: "🌍",
+    title: "Global by design",
+    description:
+      "Multi-region infrastructure keeps your app fast for customers wherever they are.",
+  },
+];
+
+const logos = ["Northwind", "Initech", "Globex", "Umbrella", "Soylent", "Hooli"];
+
+const testimonial = {
+  quote:
+    "We replaced four different tools with Acme and cut our time-to-ship in half. It's the calmest our engineering team has felt in years.",
+  name: "Jordan Ellis",
+  role: "VP of Engineering, Northwind",
+};
+---
+
+<Layout title="Acme App Co.">
+  <section class="hero section">
+    <div class="wrap hero__inner">
+      <span class="eyebrow">Now in general availability</span>
+      <h1>Build and ship apps your customers actually love.</h1>
+      <p class="hero__lede">
+        Acme App Co. gives product teams the infrastructure, design system, and
+        workflow to go from idea to production without the usual friction.
+      </p>
+      <div class="hero__actions">
+        <a href="/contact" class="btn btn--primary">Start free trial</a>
+        <a href="/features" class="btn btn--ghost">Explore features</a>
+      </div>
+      <p class="hero__note">No credit card required · 14-day free trial</p>
+    </div>
+  </section>
+
+  <section class="logos section--tight">
+    <div class="wrap">
+      <p class="logos__label">Trusted by teams at</p>
+      <div class="logos__row">
+        {logos.map((logo) => <span class="logos__item">{logo}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">Why Acme</span>
+        <h2>Everything you need, nothing you don't</h2>
+        <p>
+          A complete platform for building modern apps — designed to get out of
+          your way.
+        </p>
+      </div>
+      <div class="grid grid--3">
+        {features.map((f) => <FeatureCard {...f} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonial section--tight">
+    <div class="wrap">
+      <blockquote class="card testimonial__card">
+        <p class="testimonial__quote">&ldquo;{testimonial.quote}&rdquo;</p>
+        <footer>
+          <strong>{testimonial.name}</strong>
+          <span>{testimonial.role}</span>
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="cta section">
+    <div class="wrap cta__inner card">
+      <h2>Ready to see it for yourself?</h2>
+      <p>Get set up in minutes. Cancel anytime.</p>
+      <div class="cta__actions">
+        <a href="/contact" class="btn btn--primary">Start free trial</a>
+        <a href="/pricing" class="btn btn--ghost">View pricing</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero__inner {
+    text-align: center;
+    max-width: 780px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+  }
+
+  .hero__lede {
+    font-size: 1.15rem;
+    max-width: 56ch;
+    margin: 0 auto 32px;
+  }
+
+  .hero__actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .hero__note {
+    font-size: 0.85rem;
+    margin: 0;
+  }
+
+  .logos__label {
+    text-align: center;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .logos__row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+
+  .logos__item {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+  }
+
+  .section__head {
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto 48px;
+  }
+
+  .testimonial__card {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 48px;
+  }
+
+  .testimonial__quote {
+    font-size: 1.3rem;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+
+  .testimonial__card footer {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .testimonial__card footer span {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+
+  .cta__inner {
+    text-align: center;
+    padding: 56px;
+  }
+
+  .cta__actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+
+  @media (max-width: 560px) {
+    .testimonial__card,
+    .cta__inner {
+      padding: 32px 24px;
+    }
+  }
+</style>
