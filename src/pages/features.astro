@@ -1,0 +1,156 @@
+---
+import Layout from "../layouts/Layout.astro";
+import FeatureCard from "../components/FeatureCard.astro";
+
+const groups = [
+  {
+    title: "Build",
+    description: "Everything you need to go from idea to working product.",
+    items: [
+      {
+        icon: "🧱",
+        title: "Component library",
+        description:
+          "A themeable design system with 80+ accessible components, ready for production.",
+      },
+      {
+        icon: "⚙️",
+        title: "Workflow automation",
+        description:
+          "Visual pipelines for approvals, notifications, and background jobs — no cron scripts required.",
+      },
+      {
+        icon: "🔌",
+        title: "Open API & SDKs",
+        description:
+          "A typed REST API plus SDKs for JavaScript, Python, and Go, all generated from the same schema.",
+      },
+    ],
+  },
+  {
+    title: "Operate",
+    description: "Keep everything running smoothly as you grow.",
+    items: [
+      {
+        icon: "📊",
+        title: "Real-time analytics",
+        description:
+          "Track usage, performance, and errors in one dashboard with alerts wired to Slack and email.",
+      },
+      {
+        icon: "🛡️",
+        title: "Role-based access",
+        description:
+          "Fine-grained permissions, SSO/SAML, and audit trails so the right people see the right things.",
+      },
+      {
+        icon: "🧯",
+        title: "99.99% uptime SLA",
+        description:
+          "Multi-region failover and automated backups keep your app online, even on a bad day.",
+      },
+    ],
+  },
+  {
+    title: "Collaborate",
+    description: "Bring your whole team into one workspace.",
+    items: [
+      {
+        icon: "💬",
+        title: "Built-in comments",
+        description:
+          "Leave feedback directly on the thing you're talking about — no more screenshots in Slack.",
+      },
+      {
+        icon: "🗂️",
+        title: "Version history",
+        description:
+          "Every change is tracked and reversible, so your team can move fast without fear.",
+      },
+      {
+        icon: "🧑‍🤝‍🧑",
+        title: "Guest access",
+        description:
+          "Invite clients and contractors with scoped, time-limited access — no seat required.",
+      },
+    ],
+  },
+];
+---
+
+<Layout
+  title="Features"
+  description="Explore everything Acme App Co. gives your team to build, operate, and collaborate on great software."
+>
+  <section class="section hero-sm">
+    <div class="wrap hero-sm__inner">
+      <span class="eyebrow">Features</span>
+      <h1>One platform, every stage of the product lifecycle.</h1>
+      <p>
+        From the first prototype to the millionth user, Acme gives your team a
+        single, cohesive toolkit instead of a pile of disconnected services.
+      </p>
+    </div>
+  </section>
+
+  {
+    groups.map((group) => (
+      <section class="section--tight group">
+        <div class="wrap">
+          <div class="group__head">
+            <h2>{group.title}</h2>
+            <p>{group.description}</p>
+          </div>
+          <div class="grid grid--3">
+            {group.items.map((item) => (
+              <FeatureCard {...item} />
+            ))}
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="section cta">
+    <div class="wrap cta__inner card">
+      <h2>See every feature in action</h2>
+      <p>Book a 20-minute walkthrough with our team, no pressure, no pitch deck.</p>
+      <a href="/contact" class="btn btn--primary">Book a demo</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-sm__inner {
+    max-width: 680px;
+  }
+
+  .hero-sm h1 {
+    font-size: clamp(2.1rem, 4vw, 2.8rem);
+  }
+
+  .group {
+    border-top: 1px solid var(--border);
+  }
+
+  .group__head {
+    margin-bottom: 32px;
+  }
+
+  .group__head h2 {
+    font-size: 1.5rem;
+  }
+
+  .group__head p {
+    margin-bottom: 0;
+  }
+
+  .cta__inner {
+    text-align: center;
+    padding: 56px;
+  }
+
+  .cta__inner .btn {
+    margin-top: 8px;
+  }
+</style>

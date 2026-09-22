@@ -1,0 +1,277 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const plans = [
+  {
+    name: "Starter",
+    price: "$0",
+    period: "forever",
+    description: "For solo builders trying Acme out.",
+    features: [
+      "Up to 3 projects",
+      "1 team member",
+      "Community support",
+      "Core components & API",
+    ],
+    cta: "Start for free",
+    highlighted: false,
+  },
+  {
+    name: "Growth",
+    price: "$49",
+    period: "per user / month",
+    description: "For teams shipping products in production.",
+    features: [
+      "Unlimited projects",
+      "Up to 20 team members",
+      "Priority email support",
+      "Advanced analytics",
+      "SSO & audit logs",
+    ],
+    cta: "Start free trial",
+    highlighted: true,
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    period: "billed annually",
+    description: "For organizations with advanced needs.",
+    features: [
+      "Unlimited everything",
+      "Dedicated success manager",
+      "Custom contracts & SLAs",
+      "On-prem / VPC deployment",
+      "24/7 phone support",
+    ],
+    cta: "Talk to sales",
+    highlighted: false,
+  },
+];
+
+const faqs = [
+  {
+    q: "Can I change plans later?",
+    a: "Yes — upgrade, downgrade, or cancel at any time from your billing settings. Changes are prorated automatically.",
+  },
+  {
+    q: "Is there a free trial on paid plans?",
+    a: "Every paid plan includes a 14-day free trial, no credit card required to start.",
+  },
+  {
+    q: "Do you offer discounts for nonprofits or startups?",
+    a: "Yes, reach out to our team and we'll get you set up with a discounted plan.",
+  },
+  {
+    q: "What payment methods do you accept?",
+    a: "All major credit cards, ACH transfer, and invoicing for Enterprise customers.",
+  },
+];
+---
+
+<Layout
+  title="Pricing"
+  description="Simple, transparent pricing for teams of every size. Start free, upgrade when you're ready."
+>
+  <section class="section hero-sm">
+    <div class="wrap hero-sm__inner">
+      <span class="eyebrow">Pricing</span>
+      <h1>Simple pricing that scales with your team.</h1>
+      <p>No hidden fees. No surprise invoices. Cancel anytime.</p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap">
+      <div class="plans">
+        {
+          plans.map((plan) => (
+            <div class={`card plan ${plan.highlighted ? "plan--highlighted" : ""}`}>
+              {plan.highlighted && <span class="plan__badge">Most popular</span>}
+              <h3>{plan.name}</h3>
+              <p class="plan__desc">{plan.description}</p>
+              <div class="plan__price">
+                <span class="plan__amount">{plan.price}</span>
+                <span class="plan__period">{plan.period}</span>
+              </div>
+              <a
+                href="/contact"
+                class={`btn btn--block ${plan.highlighted ? "btn--primary" : "btn--ghost"}`}
+              >
+                {plan.cta}
+              </a>
+              <ul class="plan__features">
+                {plan.features.map((f) => (
+                  <li>
+                    <span aria-hidden="true">✓</span> {f}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">FAQ</span>
+        <h2>Questions? Answers.</h2>
+      </div>
+      <div class="faq__list">
+        {
+          faqs.map((item) => (
+            <details class="faq__item card">
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-sm__inner {
+    max-width: 640px;
+  }
+
+  .hero-sm h1 {
+    font-size: clamp(2.1rem, 4vw, 2.8rem);
+  }
+
+  .plans {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+
+  .plan {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .plan--highlighted {
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+    transform: translateY(-8px);
+  }
+
+  .plan__badge {
+    position: absolute;
+    top: -12px;
+    right: 24px;
+    background: linear-gradient(135deg, var(--accent), #5a3fe0);
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 999px;
+  }
+
+  .plan h3 {
+    font-size: 1.2rem;
+  }
+
+  .plan__desc {
+    font-size: 0.9rem;
+    min-height: 2.6em;
+  }
+
+  .plan__price {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .plan__amount {
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--text);
+  }
+
+  .plan__period {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .plan__features {
+    list-style: none;
+    margin: 24px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .plan__features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .plan__features li span {
+    color: var(--accent-2);
+    font-weight: 700;
+  }
+
+  .section__head {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto 40px;
+  }
+
+  .faq__list {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .faq__item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text);
+    list-style: none;
+  }
+
+  .faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__item summary::after {
+    content: "+";
+    float: right;
+    color: var(--text-muted);
+  }
+
+  .faq__item[open] summary::after {
+    content: "−";
+  }
+
+  .faq__item p {
+    margin: 14px 0 0;
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 860px) {
+    .plans {
+      grid-template-columns: 1fr;
+    }
+
+    .plan--highlighted {
+      transform: none;
+    }
+  }
+</style>
