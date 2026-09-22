@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import FeatureCard from "../components/FeatureCard.astro";
+import { withBase } from "../utils/url";
 
 const features = [
   {
@@ -61,8 +62,8 @@ const testimonial = {
         workflow to go from idea to production without the usual friction.
       </p>
       <div class="hero__actions">
-        <a href="/contact" class="btn btn--primary">Start free trial</a>
-        <a href="/features" class="btn btn--ghost">Explore features</a>
+        <a href={withBase("/contact")} class="btn btn--primary">Start free trial</a>
+        <a href={withBase("/features")} class="btn btn--ghost">Explore features</a>
       </div>
       <p class="hero__note">No credit card required · 14-day free trial</p>
     </div>
@@ -110,8 +111,8 @@ const testimonial = {
       <h2>Ready to see it for yourself?</h2>
       <p>Get set up in minutes. Cancel anytime.</p>
       <div class="cta__actions">
-        <a href="/contact" class="btn btn--primary">Start free trial</a>
-        <a href="/pricing" class="btn btn--ghost">View pricing</a>
+        <a href={withBase("/contact")} class="btn btn--primary">Start free trial</a>
+        <a href={withBase("/pricing")} class="btn btn--ghost">View pricing</a>
       </div>
     </div>
   </section>
