@@ -1,0 +1,233 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { withBase } from "../utils/url";
+
+const apps = [
+  {
+    icon: "📋",
+    name: "Acme Tasks",
+    tagline: "A focused to-do list that gets out of your way.",
+    href: "#",
+  },
+  {
+    icon: "📝",
+    name: "Acme Notes",
+    tagline: "Fast, searchable notes that sync everywhere.",
+    href: "#",
+  },
+  {
+    icon: "⏱️",
+    name: "Acme Focus",
+    tagline: "Pomodoro timers and deep work tracking.",
+    href: "#",
+  },
+  {
+    icon: "💰",
+    name: "Acme Ledger",
+    tagline: "Simple personal budgeting, done right.",
+    href: "#",
+  },
+];
+
+const faqs = [
+  {
+    q: "Where can I download your apps?",
+    a: "Every Acme app is available on the Apple App Store. Tap “View on the App Store” on any app above to see pricing, screenshots, and reviews.",
+  },
+  {
+    q: "Why do prices show on the App Store instead of here?",
+    a: "Apple handles all billing and receipts directly, so the price you see there is always accurate and up to date — we'd rather send you to the source than risk showing you a stale number.",
+  },
+  {
+    q: "Do your apps support Family Sharing?",
+    a: "Yes — every Acme app supports Apple's Family Sharing, so one purchase can cover your whole family.",
+  },
+  {
+    q: "How do I request a refund?",
+    a: "Refunds are issued by Apple. Visit reportaproblem.apple.com and select the app to request one.",
+  },
+  {
+    q: "Is there an Android version?",
+    a: "Not yet — we're iOS-only for now, but Android is on our roadmap.",
+  },
+];
+---
+
+<Layout
+  title="Apps"
+  description="Browse the apps Acme App Co. builds and ships on the Apple App Store."
+>
+  <section class="section hero-sm">
+    <div class="wrap hero-sm__inner">
+      <span class="eyebrow">Our apps</span>
+      <h1>Every app we build, sold on its own.</h1>
+      <p>
+        No bundles, no subscriptions to the whole company — just pick the app
+        you need. Pricing, purchases, and reviews all live on the App Store.
+      </p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap">
+      <div class="apps-grid">
+        {
+          apps.map((app) => (
+            <div class="card app-card">
+              <div class="app-card__icon" aria-hidden="true">
+                {app.icon}
+              </div>
+              <h3>{app.name}</h3>
+              <p class="app-card__tagline">{app.tagline}</p>
+              <a href={app.href} class="btn btn--primary btn--block app-store-btn">
+                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.017-.12-.037-.24-.037-.37 0-1.1.548-2.23 1.207-2.98.79-.92 2.15-1.62 3.1-1.65.02.13.03.26.03.38zm2.868 16.13c-.29.68-.635 1.32-1.02 1.91-.53.83-1.207 1.86-2.083 1.87-.77.01-1.02-.5-2.12-.5-1.1 0-1.383.49-2.097.51-.85.03-1.5-.93-2.03-1.75-1.42-2.16-2.5-6.11-1.04-8.78.72-1.32 2.02-2.16 3.43-2.18.83-.02 1.6.56 2.1.56.5 0 1.44-.69 2.43-.59.41.02 1.57.17 2.32 1.24-.06.04-1.38.81-1.37 2.42.02 1.92 1.69 2.56 1.71 2.57-.02.06-.27.93-.9 1.71-.53.68-1.08 1.36-1.32 1.36z"
+                  />
+                </svg>
+                View on the App Store
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">FAQ</span>
+        <h2>Questions? Answers.</h2>
+      </div>
+      <div class="faq__list">
+        {
+          faqs.map((item) => (
+            <details class="faq__item card">
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta">
+    <div class="wrap cta__inner card">
+      <h2>Building something new</h2>
+      <p>Have an idea for the next Acme app? We'd love to hear it.</p>
+      <a href={withBase("/contact")} class="btn btn--primary">Get in touch</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-sm__inner {
+    max-width: 640px;
+  }
+
+  .hero-sm h1 {
+    font-size: clamp(2.1rem, 4vw, 2.8rem);
+  }
+
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .app-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .app-card__icon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: rgba(124, 92, 255, 0.12);
+    font-size: 1.5rem;
+    margin-bottom: 18px;
+  }
+
+  .app-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .app-card__tagline {
+    font-size: 0.9rem;
+    min-height: 2.6em;
+    margin-bottom: 24px;
+  }
+
+  .app-store-btn {
+    margin-top: auto;
+    gap: 8px;
+  }
+
+  .section__head {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto 40px;
+  }
+
+  .faq__list {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .faq__item summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text);
+    list-style: none;
+  }
+
+  .faq__item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__item summary::after {
+    content: "+";
+    float: right;
+    color: var(--text-muted);
+  }
+
+  .faq__item[open] summary::after {
+    content: "−";
+  }
+
+  .faq__item p {
+    margin: 14px 0 0;
+    font-size: 0.92rem;
+  }
+
+  .cta__inner {
+    text-align: center;
+    padding: 56px;
+  }
+
+  .cta__inner .btn {
+    margin-top: 8px;
+  }
+
+  @media (max-width: 960px) {
+    .apps-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .apps-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
