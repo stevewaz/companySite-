@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { withBase } from "../utils/url";
 
 const plans = [
   {
@@ -94,7 +95,7 @@ const faqs = [
                 <span class="plan__period">{plan.period}</span>
               </div>
               <a
-                href="/contact"
+                href={withBase("/contact")}
                 class={`btn btn--block ${plan.highlighted ? "btn--primary" : "btn--ghost"}`}
               >
                 {plan.cta}

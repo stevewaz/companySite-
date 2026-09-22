@@ -1,26 +1,28 @@
 ---
+import { withBase } from "../utils/url";
+
 const year = new Date().getFullYear();
 
 const columns = [
   {
     title: "Product",
     links: [
-      { href: "/features", label: "Features" },
-      { href: "/pricing", label: "Pricing" },
+      { href: withBase("/features"), label: "Features" },
+      { href: withBase("/pricing"), label: "Pricing" },
     ],
   },
   {
     title: "Company",
     links: [
-      { href: "/about", label: "About" },
-      { href: "/contact", label: "Contact" },
+      { href: withBase("/about"), label: "About" },
+      { href: withBase("/contact"), label: "Contact" },
     ],
   },
   {
     title: "Legal",
     links: [
-      { href: "/", label: "Privacy" },
-      { href: "/", label: "Terms" },
+      { href: withBase("/"), label: "Privacy" },
+      { href: withBase("/"), label: "Terms" },
     ],
   },
 ];
@@ -29,7 +31,7 @@ const columns = [
 <footer class="footer">
   <div class="wrap footer__inner">
     <div class="footer__brand">
-      <a href="/" class="footer__logo">
+      <a href={withBase("/")} class="footer__logo">
         <span class="footer__mark" aria-hidden="true"></span>
         Acme App Co.
       </a>

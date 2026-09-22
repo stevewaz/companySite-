@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { withBase } from "../utils/url";
 
 const values = [
   {
@@ -108,7 +109,7 @@ const team = [
     <div class="wrap cta__inner card">
       <h2>We're hiring across the company</h2>
       <p>Come build the future of app development with us.</p>
-      <a href="/contact" class="btn btn--primary">View open roles</a>
+      <a href={withBase("/contact")} class="btn btn--primary">View open roles</a>
     </div>
   </section>
 </Layout>

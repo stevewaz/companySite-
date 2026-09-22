@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import FeatureCard from "../components/FeatureCard.astro";
+import { withBase } from "../utils/url";
 
 const groups = [
   {
@@ -115,7 +116,7 @@ const groups = [
     <div class="wrap cta__inner card">
       <h2>See every feature in action</h2>
       <p>Book a 20-minute walkthrough with our team, no pressure, no pitch deck.</p>
-      <a href="/contact" class="btn btn--primary">Book a demo</a>
+      <a href={withBase("/contact")} class="btn btn--primary">Book a demo</a>
     </div>
   </section>
 </Layout>
